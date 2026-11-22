@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matheus Marra — Full Stack Software Engineer</title>
+  <meta name="description" content="Portfólio técnico de Matheus Marra — Engenheiro de Software Full Stack (.NET, Java, Angular, Arquitetura Distribuída)." />
+
+  <!-- Tipografia: Inter (UI) + JetBrains Mono (Dados técnicos, tags e arquitetura) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            canvas: '#0B0F19',
+            surface: {
+              950: '#0B0F19',
+              900: '#111827',
+              850: '#161F33',
+              800: '#1E293B',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --bg-canvas: #0B0F19;
+      --emerald-glow: rgba(16, 185, 129, 0.22);
+      --cyan-glow: rgba(6, 182, 212, 0.20);
+      --indigo-glow: rgba(59, 130, 246, 0.16);
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      overflow-x: hidden;
+    }
+
+    /* Micro-grid arquitetural sutil no fundo */
+    .bg-arch-grid {
+      background-size: 44px 44px;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      mask-image: radial-gradient(ellipse 85% 70% at 50% 25%, #000 55%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 25%, #000 55%, transparent 100%);
+    }
+
+    /* 1. Liquid Morphing Orbs (Formas orgânicas fluidas para refração) */
+    .liquid-orb {
+      position: absolute;
+      pointer-events: none;
+      filter: blur(90px);
+      will-change: border-radius, transform;
+      animation: liquidMorph 19s ease-in-out infinite alternate;
+    }
+
+    .liquid-orb-delayed {
+      animation: liquidMorphReverse 22s ease-in-out infinite alternate;
+    }
+
+    @keyframes liquidMorph {
+      0% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+      }
+      33% {
+        border-radius: 38% 62% 65% 35% / 42% 58% 42% 58%;
+        transform: translate3d(28px, -18px, 0) scale(1.06) rotate(8deg);
+      }
+      66% {
+        border-radius: 72% 28% 45% 55% / 35% 65% 35% 65%;
+        transform: translate3d(-22px, 24px, 0) scale(0.96) rotate(-6deg);
+      }
+      100% {
+        border-radius: 45% 55% 68% 32% / 55% 38% 62% 45%;
+        transform: translate3d(14px, 12px, 0) scale(1.04) rotate(4deg);
+      }
+    }
+
+    @keyframes liquidMorphReverse {
+      0% {
+        border-radius: 42% 58% 62% 38% / 48% 35% 65% 52%;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      50% {
+        border-radius: 66% 34% 38% 62% / 62% 54% 46% 38%;
+        transform: translate3d(-32px, -22px, 0) scale(1.08);
+      }
+      100% {
+        border-radius: 34% 66% 54% 46% / 38% 62% 38% 62%;
+        transform: translate3d(20px, 18px, 0) scale(0.95);
+      }
+    }
+
+    /* 2. Liquid Pill Switcher (Seletor de idioma PT-BR / EN) */
+    .liquid-pill-track {
+      position: relative;
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.45);
+    }
+
+    .liquid-pill-indicator {
+      position: absolute;
+      top: 3px;
+      bottom: 3px;
+      left: 3px;
+      width: calc(50% - 3px);
+      border-radius: 9999px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.26) 0%, rgba(6, 182, 212, 0.22) 100%);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        inset 0 -1px 1px rgba(16, 185, 129, 0.25),
+        0 2px 10px rgba(16, 185, 129, 0.18);
+      transition: transform 0.48s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+    }
+
+    .liquid-pill-indicator.is-en {
+      transform: translateX(100%);
+    }
+
+    /* 3. Liquid Glass Surfaces & Specular Highlights */
+    .liquid-header {
+      background: rgba(11, 15, 25, 0.72);
+      backdrop-filter: blur(18px) saturate(170%);
+      -webkit-backdrop-filter: blur(18px) saturate(170%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 -1px 0 rgba(16, 185, 129, 0.06);
+    }
+
+    .liquid-glass {
+      position: relative;
+      background: linear-gradient(145deg, rgba(17, 24, 39, 0.64) 0%, rgba(11, 15, 25, 0.78) 100%);
+      backdrop-filter: blur(18px) saturate(170%);
+      -webkit-backdrop-filter: blur(18px) saturate(170%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.14),
+        inset 0 -1px 1px rgba(16, 185, 129, 0.06),
+        0 18px 40px -18px rgba(0, 0, 0, 0.65);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .liquid-glass:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Spotlight interativo acompanhando o cursor (--mouse-x, --mouse-y) */
+    .glass-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: radial-gradient(
+        480px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+        rgba(16, 185, 129, 0.24),
+        rgba(6, 182, 212, 0.12) 40%,
+        transparent 75%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .glass-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(
+        520px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+        rgba(16, 185, 129, 0.065),
+        transparent 65%
+      );
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .glass-card:hover::before,
+    .glass-card:hover::after {
+      opacity: 1;
+    }
+
+    /* 4. Organic Liquid Drop Status Indicator */
+    .liquid-drop {
+      width: 9px;
+      height: 9px;
+      background: linear-gradient(135deg, #34d399, #06b6d4);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.75);
+      animation: liquidDropMorph 5s ease-in-out infinite;
+    }
+
+    @keyframes liquidDropMorph {
+      0%, 100% {
+        border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%;
+        transform: scale(1);
+      }
+      50% {
+        border-radius: 38% 62% 58% 42% / 42% 62% 38% 58%;
+        transform: scale(1.14);
+      }
+    }
+
+    /* Animação do fluxo assíncrono RabbitMQ no SVG */
+    .async-flow-line {
+      stroke-dasharray: 5 5;
+      animation: flowDash 1.4s linear infinite;
+    }
+
+    @keyframes flowDash {
+      to {
+        stroke-dashoffset: -20;
+      }
+    }
+
+    /* Realce suave nos nós do diagrama arquitetural */
+    .arch-node {
+      transition: transform 0.25s ease, filter 0.25s ease;
+      transform-box: fill-box;
+      transform-origin: center;
+      cursor: default;
+    }
+
+    .arch-node:hover {
+      transform: translateY(-2px);
+      filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.32));
+    }
+
+    /* Respeita preferência de movimento reduzido */
+    @media (prefers-reduced-motion: reduce) {
+      .liquid-orb,
+      .liquid-orb-delayed,
+      .liquid-drop,
+      .async-flow-line {
+        animation: none;
+      }
+      .liquid-pill-indicator {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body class="bg-canvas text-slate-200 font-sans antialiased selection:bg-emerald-500/25 selection:text-emerald-200">
+
+  <!-- Camada Ambiente Global (Micro-grid + Liquid Morphing Orbs) -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-arch-grid"></div>
+    <!-- Orb Esmeralda superior esquerdo -->
+    <div
+      class="liquid-orb -top-28 -left-24 w-[420px] h-[420px] sm:w-[540px] sm:h-[540px]"
+      style="background: radial-gradient(circle at 35% 35%, rgba(16, 185, 129, 0.24), rgba(6, 182, 212, 0.08) 65%, transparent 100%);"
+    ></div>
+    <!-- Orb Ciano/Índigo superior direito -->
+    <div
+      class="liquid-orb liquid-orb-delayed top-24 -right-32 w-[380px] h-[380px] sm:w-[520px] sm:h-[520px]"
+      style="background: radial-gradient(circle at 60% 40%, rgba(6, 182, 212, 0.20), rgba(59, 130, 246, 0.12) 60%, transparent 100%);"
+    ></div>
+  </div>
+
+  <!-- Barra de Navegação Sticky com Liquid Glass -->
+  <header class="sticky top-0 z-40 liquid-header">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between gap-4">
+      <a href="#top" class="font-mono text-sm font-medium tracking-tight text-slate-100 hover:text-emerald-300 transition-colors flex items-center gap-2.5">
+        <span class="liquid-drop inline-block" aria-hidden="true"></span>
+        <span>matheus.marra</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7 text-sm text-slate-400">
+        <a href="#projects" data-i18n="nav.projects" class="hover:text-slate-100 transition-colors">Projetos &amp; Arquitetura</a>
+        <a href="#experience" data-i18n="nav.experience" class="hover:text-slate-100 transition-colors">Experiência</a>
+        <a href="#stack" data-i18n="nav.stack" class="hover:text-slate-100 transition-colors">Stack Técnica</a>
+      </nav>
+
+      <!-- Liquid Pill Switcher PT-BR / EN -->
+      <div class="liquid-pill-track rounded-full p-1 flex items-center w-[124px] h-9 select-none" role="group" aria-label="Language selector">
+        <div id="pill-indicator" class="liquid-pill-indicator" aria-hidden="true"></div>
+        <button
+          id="btn-pt"
+          type="button"
+          onclick="setLanguage('pt')"
+          aria-pressed="true"
+          class="relative z-10 w-1/2 h-full text-xs font-mono font-semibold text-slate-50 transition-colors"
+        >
+          PT-BR
+        </button>
+        <button
+          id="btn-en"
+          type="button"
+          onclick="setLanguage('en')"
+          aria-pressed="false"
+          class="relative z-10 w-1/2 h-full text-xs font-mono font-medium text-slate-400 hover:text-slate-200 transition-colors"
+        >
+          EN
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="relative z-10 max-w-5xl mx-auto px-5 sm:px-8">
+
+    <!-- 1) HERO SECTION -->
+    <section class="relative py-16 sm:py-24 border-b border-white/[0.08]">
+      <div class="max-w-3xl">
+        <!-- Badge de Disponibilidade com Gota Líquida -->
+        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full liquid-glass text-xs font-mono text-emerald-300 mb-6">
+          <span class="relative flex items-center justify-center">
+            <span class="liquid-drop inline-block"></span>
+          </span>
+          <span data-i18n="hero.badge">Disponível para desafios Full Stack &amp; Arquitetura • São José dos Campos, SP</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-slate-50 leading-tight">
+          Matheus Marra
+        </h1>
+
+        <p class="mt-3 font-mono text-base sm:text-lg bg-gradient-to-r from-emerald-400 via-cyan-300 to-sky-400 bg-clip-text text-transparent font-medium">
+          Full Stack Software Engineer | .NET 10, Java/Spring &amp; Distributed Systems
+        </p>
+
+        <p data-i18n="hero.summary" class="mt-6 text-base sm:text-lg text-slate-300/90 leading-relaxed">
+          Engenheiro de Software Full Stack Pleno com foco em backend robusto, arquitetura de microsserviços e aplicações corporativas de alta criticidade. Experiência prática na construção de APIs escaláveis, mensageria orientada a eventos, observabilidade end-to-end e interfaces Angular modernas.
+        </p>
+
+        <!-- Botões de Ação -->
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a
+            href="#projects"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-semibold text-sm shadow-lg shadow-emerald-500/20 hover:brightness-110 transition-all"
+          >
+            <span data-i18n="hero.ctaProjects">Ver Projetos</span>
+            <span aria-hidden="true">↓</span>
+          </a>
+
+          <button
+            type="button"
+            onclick="copyEmail()"
+            class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl liquid-glass text-slate-100 font-medium text-sm hover:text-emerald-300 transition-colors"
+          >
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span id="hero-email-label" data-i18n="hero.copyEmail">Copiar E-mail</span>
+          </button>
+
+          <a
+            href="https://github.com/math-mms"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl liquid-glass text-slate-200 font-medium text-sm hover:text-white transition-colors"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+            <span>GitHub</span>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/matheus-marra-dev/"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl liquid-glass text-slate-200 font-medium text-sm hover:text-cyan-300 transition-colors"
+          >
+            <svg class="w-4 h-4 text-cyan-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) PROJETOS EM DESTAQUE (FOCO EM ARQUITETURA E DECISÕES TÉCNICAS) -->
+    <section id="projects" class="relative py-16 sm:py-20 border-b border-white/[0.08]">
+      <!-- Liquid Morphing Orb dedicado à seção de Projetos & Arquitetura -->
+      <div
+        class="liquid-orb top-1/3 left-1/2 -translate-x-1/2 w-[520px] h-[420px] sm:w-[760px] sm:h-[480px] opacity-80"
+        style="background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.16), rgba(59, 130, 246, 0.13) 55%, transparent 100%);"
+        aria-hidden="true"
+      ></div>
+
+      <div class="relative mb-10">
+        <span class="font-mono text-xs uppercase tracking-wider text-emerald-400" data-i18n="projects.eyebrow">01 / Engenharia &amp; Arquitetura</span>
+        <h2 class="mt-2 text-2xl sm:text-3xl font-bold text-slate-50 tracking-tight" data-i18n="projects.title">
+          Projetos em Destaque
+        </h2>
+        <p class="mt-2 text-sm sm:text-base text-slate-400 max-w-2xl" data-i18n="projects.subtitle">
+          Sistemas selecionados com foco em decisões arquiteturais, isolamento de domínio, resiliência e trade-offs de implementação.
+        </p>
+      </div>
+
+      <div class="relative space-y-8">
+
+        <!-- PROJETO 1: Sistema de Gerenciamento Financeiro Distribuído -->
+        <article class="liquid-glass glass-card rounded-2xl p-6 sm:p-8">
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+            <div>
+              <div class="flex flex-wrap items-center gap-2.5 mb-2">
+                <span class="px-2.5 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-400/25 text-emerald-300 font-mono text-xs">
+                  Distributed Systems
+                </span>
+                <span class="font-mono text-xs text-slate-400">Event-Driven • Database per Service</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-semibold text-slate-50" data-i18n="proj1.title">
+                Sistema de Gerenciamento Financeiro Distribuído
+              </h3>
+            </div>
+            <a
+              href="https://github.com/math-mms"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-300 hover:text-emerald-300 transition-colors shrink-0"
+            >
+              <span data-i18n="projects.repo">Ver código no GitHub</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <p class="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed" data-i18n="proj1.desc">
+            Plataforma financeira projetada sob arquitetura de microsserviços para garantir isolamento transacional e escalabilidade independente entre domínios de autenticação, contas, transações e orçamentos.
+          </p>
+
+          <!-- Diagrama Visual Arquitetural Interativo em SVG -->
+          <div class="mt-6 rounded-xl bg-slate-950/65 backdrop-blur-md border border-white/[0.08] p-4 sm:p-5 overflow-x-auto">
+            <div class="flex items-center justify-between gap-4 mb-3">
+              <span class="text-xs font-mono text-slate-400" data-i18n="proj1.diagramLabel">
+                Topologia: YARP Gateway • Microsserviços .NET 10 • RabbitMQ • Redis • PostgreSQL
+              </span>
+              <div class="hidden sm:flex items-center gap-4 text-[11px] font-mono text-slate-400">
+                <span class="flex items-center gap-1.5"><span class="w-3 h-0.5 bg-cyan-400 inline-block"></span> Sync HTTP</span>
+                <span class="flex items-center gap-1.5"><span class="w-3 h-0.5 border-t border-dashed border-amber-400 inline-block"></span> Async Events</span>
+              </div>
+            </div>
+
+            <svg class="w-full min-w-[680px] h-auto" viewBox="0 0 820 230" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de arquitetura de microsserviços com YARP API Gateway, Auth, Account, Transaction e Budget Services, RabbitMQ, Redis e PostgreSQL">
+              <!-- Client SPA -->
+              <g class="arch-node">
+                <rect x="8" y="85" width="102" height="60" rx="10" fill="#111827" stroke="#334155" />
+                <text x="59" y="111" text-anchor="middle" fill="#f8fafc" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">Angular SPA</text>
+                <text x="59" y="128" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono, monospace" font-size="9">Frontend UI</text>
+              </g>
+
+              <!-- Sync Arrow Client -> YARP -->
+              <line x1="110" y1="115" x2="148" y2="115" stroke="#22d3ee" stroke-width="1.5" />
+              <polygon points="148,111 155,115 148,119" fill="#22d3ee" />
+
+              <!-- YARP API Gateway -->
+              <g class="arch-node">
+                <rect x="157" y="65" width="130" height="100" rx="10" fill="#0f172a" stroke="#06b6d4" stroke-width="1.2" />
+                <text x="222" y="102" text-anchor="middle" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">YARP Gateway</text>
+                <text x="222" y="120" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono, monospace" font-size="9">Reverse Proxy</text>
+                <text x="222" y="135" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono, monospace" font-size="9">JWT / Rate Limit</text>
+              </g>
+
+              <!-- Sync Fan-out YARP -> 4 Services -->
+              <path d="M287 85 L340 32" stroke="#475569" stroke-width="1.3" />
+              <path d="M287 104 L340 87" stroke="#475569" stroke-width="1.3" />
+              <path d="M287 126 L340 142" stroke="#475569" stroke-width="1.3" />
+              <path d="M287 145 L340 197" stroke="#475569" stroke-width="1.3" />
+
+              <!-- 4 Microservices (.NET 10) -->
+              <g class="arch-node">
+                <rect x="342" y="10" width="172" height="44" rx="8" fill="#111827" stroke="#334155" />
+                <text x="428" y="29" text-anchor="middle" fill="#f1f5f9" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="600">Auth Service</text>
+                <text x="428" y="43" text-anchor="middle" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="8.5">.NET 10 • Identity &amp; Tokens</text>
+              </g>
+
+              <g class="arch-node">
+                <rect x="342" y="65" width="172" height="44" rx="8" fill="#111827" stroke="#334155" />
+                <text x="428" y="84" text-anchor="middle" fill="#f1f5f9" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="600">Account Service</text>
+                <text x="428" y="98" text-anchor="middle" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="8.5">.NET 10 • Balances &amp; Wallets</text>
+              </g>
+
+              <g class="arch-node">
+                <rect x="342" y="120" width="172" height="44" rx="8" fill="#111827" stroke="#334155" />
+                <text x="428" y="139" text-anchor="middle" fill="#f1f5f9" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="600">Transaction Service</text>
+                <text x="428" y="153" text-anchor="middle" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="8.5">.NET 10 • Ledger &amp; Outbox</text>
+              </g>
+
+              <g class="arch-node">
+                <rect x="342" y="175" width="172" height="44" rx="8" fill="#111827" stroke="#334155" />
+                <text x="428" y="194" text-anchor="middle" fill="#f1f5f9" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="600">Budget Service</text>
+                <text x="428" y="208" text-anchor="middle" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="8.5">.NET 10 • Limits &amp; Alerts</text>
+              </g>
+
+              <!-- Async Event Bus Flow (Animated) -->
+              <path d="M514 87 L566 50" stroke="#fbbf24" stroke-width="1.4" class="async-flow-line" />
+              <path d="M514 142 L566 50" stroke="#fbbf24" stroke-width="1.4" class="async-flow-line" />
+              <path d="M514 197 L566 50" stroke="#fbbf24" stroke-width="1.4" class="async-flow-line" />
+
+              <!-- Cache & DB Connections -->
+              <line x1="514" y1="87" x2="566" y2="115" stroke="#f87171" stroke-width="1.2" stroke-dasharray="3 3" />
+              <line x1="514" y1="142" x2="566" y2="182" stroke="#38bdf8" stroke-width="1.2" />
+              <line x1="514" y1="197" x2="566" y2="182" stroke="#38bdf8" stroke-width="1.2" />
+
+              <!-- RabbitMQ Event Bus -->
+              <g class="arch-node">
+                <rect x="568" y="16" width="242" height="56" rx="10" fill="#111827" stroke="#d97706" />
+                <text x="689" y="40" text-anchor="middle" fill="#fbbf24" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">RabbitMQ Event Bus</text>
+                <text x="689" y="57" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono, monospace" font-size="9">Async Domain Events &amp; Consistência</text>
+              </g>
+
+              <!-- Redis Cache -->
+              <g class="arch-node">
+                <rect x="568" y="87" width="242" height="56" rx="10" fill="#111827" stroke="#ef4444" />
+                <text x="689" y="111" text-anchor="middle" fill="#f87171" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">Redis Distributed Cache</text>
+                <text x="689" y="128" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono, monospace" font-size="9">Idempotency Keys &amp; Read Cache</text>
+              </g>
+
+              <!-- PostgreSQL Database-per-Service -->
+              <g class="arch-node">
+                <rect x="568" y="158" width="242" height="56" rx="10" fill="#111827" stroke="#0284c7" />
+                <text x="689" y="182" text-anchor="middle" fill="#38bdf8" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">PostgreSQL (DB-per-Service)</text>
+                <text x="689" y="199" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono, monospace" font-size="9">4 Schemas Isolados • Zero Cross-Joins</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Decisões Técnicas -->
+          <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+            <div class="rounded-xl bg-slate-950/50 border border-white/[0.07] p-4">
+              <h4 class="font-mono text-xs uppercase tracking-wider text-emerald-300/90 mb-2" data-i18n="proj1.dec1Title">
+                Database per Service &amp; Consistência
+              </h4>
+              <p class="text-slate-300 leading-relaxed" data-i18n="proj1.dec1Body">
+                Cada microsserviço (Auth, Account, Transaction e Budget) possui sua própria base lógica no PostgreSQL, eliminando acoplamento via joins entre domínios. A consistência eventual entre lançamentos e saldos ocorre via eventos assíncronos no RabbitMQ.
+              </p>
+            </div>
+            <div class="rounded-xl bg-slate-950/50 border border-white/[0.07] p-4">
+              <h4 class="font-mono text-xs uppercase tracking-wider text-cyan-300/90 mb-2" data-i18n="proj1.dec2Title">
+                Borda Unificada &amp; Idempotência
+              </h4>
+              <p class="text-slate-300 leading-relaxed" data-i18n="proj1.dec2Body">
+                Uso do YARP como API Gateway nativo em .NET para roteamento centralizado e políticas de resiliência, aliado ao Redis para chaves de idempotência em transações financeiras e Podman para containers rootless.
+              </p>
+            </div>
+          </div>
+
+          <!-- Stack Badges -->
+          <div class="mt-6 flex flex-wrap gap-2 font-mono text-xs">
+            <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">.NET 10</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">YARP Gateway</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">Angular</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">RabbitMQ</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">Redis</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">PostgreSQL</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">Podman</span>
+          </div>
+        </article>
+
+        <!-- Grid de 2 colunas equilibradas para os projetos secundários -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          <!-- PROJETO 2: Plataforma de Recrutamento & Automação AH Sport Rekruttering -->
+          <article class="liquid-glass glass-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="px-2.5 py-0.5 rounded-md bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 font-mono text-xs">
+                  Workflow Automation &amp; Full Stack
+                </span>
+                <a
+                  href="https://github.com/MatheusMarra"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-mono text-xs text-slate-300 hover:text-cyan-300 transition-colors"
+                >
+                  GitHub ↗
+                </a>
+              </div>
+
+              <h3 class="text-xl font-semibold text-slate-50" data-i18n="proj2.title">
+                Plataforma de Recrutamento &amp; Automação — AH Sport Rekruttering
+              </h3>
+
+              <p class="mt-3 text-sm text-slate-300 leading-relaxed" data-i18n="proj2.desc">
+                Plataforma ponta a ponta para triagem técnica, gestão de funil de candidatos e automação de comunicações no setor esportivo e corporativo, reduzindo gargalos operacionais entre recrutadores e gestores.
+              </p>
+
+              <ul class="mt-4 space-y-2.5 text-sm text-slate-400">
+                <li class="flex items-start gap-2">
+                  <span class="text-cyan-400 font-mono mt-0.5">→</span>
+                  <span data-i18n="proj2.b1">Pipeline orientado a estados com gatilhos automáticos de notificação, agendamentos e auditoria de transições para evitar condições de corrida.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-cyan-400 font-mono mt-0.5">→</span>
+                  <span data-i18n="proj2.b2">Filtros combinados por perfil técnico e disponibilidade respaldados por índices compostos no PostgreSQL e interface bilíngue.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-white/[0.08] flex flex-wrap gap-2 font-mono text-xs">
+              <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">TypeScript</span>
+              <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">Angular / SPA</span>
+              <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">.NET / REST APIs</span>
+              <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">PostgreSQL</span>
+              <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">Event Webhooks</span>
+            </div>
+          </article>
+
+          <!-- PROJETO 3: LotoJoy -->
+          <article class="liquid-glass glass-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="px-2.5 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-400/25 text-emerald-300 font-mono text-xs">
+                  Clean Architecture
+                </span>
+                <a
+                  href="https://github.com/MatheusMarra"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-mono text-xs text-slate-300 hover:text-emerald-300 transition-colors"
+                >
+                  GitHub ↗
+                </a>
+              </div>
+
+              <h3 class="text-xl font-semibold text-slate-50">LotoJoy — Full-Stack &amp; Clean Architecture</h3>
+
+              <p class="mt-3 text-sm text-slate-300 leading-relaxed" data-i18n="proj3.desc">
+                Aplicação Full Stack para geração inteligente, conferência estatística e gestão de apostas lotéricas, estruturada com separação estrita entre regras de domínio e detalhes de infraestrutura.
+              </p>
+
+              <ul class="mt-4 space-y-2.5 text-sm text-slate-400">
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400 font-mono mt-0.5">→</span>
+                  <span data-i18n="proj3.b1">Domínio isolado de frameworks externos (Clean Architecture), facilitando testes unitários das regras de fechamento e probabilidade.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400 font-mono mt-0.5">→</span>
+                  <span data-i18n="proj3.b2">Multi-stage Docker builds separando etapa de compilação (TypeScript/React) da imagem final enxuta de runtime em Node.js.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-white/[0.08] flex flex-wrap gap-2 font-mono text-xs">
+              <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">React</span>
+              <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">Node.js</span>
+              <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">TypeScript</span>
+              <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">Clean Architecture</span>
+              <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">Docker Multi-stage</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) EXPERIÊNCIA PROFISSIONAL -->
+    <section id="experience" class="relative py-16 sm:py-20 border-b border-white/[0.08]">
+      <div class="mb-10">
+        <span class="font-mono text-xs uppercase tracking-wider text-emerald-400" data-i18n="exp.eyebrow">02 / Trajetória Profissional</span>
+        <h2 class="mt-2 text-2xl sm:text-3xl font-bold text-slate-50 tracking-tight" data-i18n="exp.title">
+          Experiência &amp; Formação
+        </h2>
+      </div>
+
+      <div class="space-y-6">
+        <!-- Experiência Profissional -->
+        <div class="liquid-glass glass-card rounded-2xl p-6 sm:p-8">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h3 class="text-lg sm:text-xl font-semibold text-slate-50" data-i18n="exp.role1">
+                Full Stack Software Developer
+              </h3>
+              <p class="text-sm font-medium text-emerald-400">
+                Stefanini Brasil <span class="text-slate-400 font-normal">• Enterprise Consulting</span>
+              </p>
+            </div>
+            <span class="font-mono text-xs text-cyan-300 bg-cyan-500/10 border border-cyan-400/20 px-3 py-1 rounded-full self-start">
+              Itaú &amp; Volkswagen
+            </span>
+          </div>
+
+          <p class="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed" data-i18n="exp.role1Desc">
+            Atuação no desenvolvimento, sustentação evolutiva e integração de sistemas corporativos de missão crítica para grandes clientes dos setores financeiro (Itaú) e automotivo (Volkswagen), operando em squads ágeis com rigorosos padrões de segurança, governança e qualidade de código.
+          </p>
+
+          <ul class="mt-4 space-y-2.5 text-sm text-slate-400">
+            <li class="flex items-start gap-2.5">
+              <span class="text-emerald-400 font-mono mt-0.5">•</span>
+              <span data-i18n="exp.b1">Desenvolvimento e manutenção de serviços backend em Java (Spring Boot) e .NET, garantindo compatibilidade de contratos e estabilidade operacional em ambientes de alto volume.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-emerald-400 font-mono mt-0.5">•</span>
+              <span data-i18n="exp.b2">Construção e evolução de interfaces corporativas em Angular com TypeScript, priorizando modularidade, performance de renderização e aderência a fluxos de negócio complexos.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-emerald-400 font-mono mt-0.5">•</span>
+              <span data-i18n="exp.b3">Participação ativa em code reviews, diagnóstico de incidentes em produção, refatoração incremental de código legado e automação de esteiras CI/CD.</span>
+            </li>
+          </ul>
+
+          <div class="mt-5 flex flex-wrap gap-2 font-mono text-xs">
+            <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">Java</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">Spring Framework</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">.NET / C#</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">Angular</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-slate-200">SQL &amp; Enterprise APIs</span>
+          </div>
+        </div>
+
+        <!-- Formação & Especialização -->
+        <div class="liquid-glass glass-card rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span class="font-mono text-xs text-slate-400 uppercase tracking-wider" data-i18n="edu.label">Formação &amp; Especialização Contínua</span>
+            <h3 class="mt-1 text-base sm:text-lg font-semibold text-slate-100" data-i18n="edu.degree">
+              Análise e Desenvolvimento de Sistemas / Engenharia de Software
+            </h3>
+            <p class="mt-1 text-sm text-slate-400" data-i18n="edu.focus">
+              Foco contínuo em Arquitetura de Sistemas Distribuídos, Mensageria, Observabilidade (OpenTelemetry/Grafana) e Cloud-Native Containers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) STACK TÉCNICA ORGANIZADA POR DOMÍNIO -->
+    <section id="stack" class="relative py-16 sm:py-20">
+      <div class="mb-10">
+        <span class="font-mono text-xs uppercase tracking-wider text-emerald-400" data-i18n="stack.eyebrow">03 / Ecossistema &amp; Ferramentas</span>
+        <h2 class="mt-2 text-2xl sm:text-3xl font-bold text-slate-50 tracking-tight" data-i18n="stack.title">
+          Stack Técnica
+        </h2>
+        <p class="mt-2 text-sm sm:text-base text-slate-400 max-w-2xl" data-i18n="stack.subtitle">
+          Tecnologias aplicadas em produção e projetos de engenharia, organizadas por responsabilidade arquitetural.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <!-- Domínio 1: Backend & APIs -->
+        <div class="liquid-glass glass-card rounded-2xl p-6">
+          <h3 class="font-mono text-sm font-semibold text-slate-100 flex items-center gap-2.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.7)]"></span>
+            <span data-i18n="stack.cat1">Backend &amp; APIs</span>
+          </h3>
+          <p class="mt-1.5 text-xs text-slate-400" data-i18n="stack.cat1Desc">
+            Construção de serviços RESTful, API gateways, integrações corporativas e processamento assíncrono.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2 font-mono text-xs">
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">C# / .NET 10</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">ASP.NET Core</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">Java</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">Spring Boot</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">Node.js</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">YARP Gateway</span>
+          </div>
+        </div>
+
+        <!-- Domínio 2: Frontend -->
+        <div class="liquid-glass glass-card rounded-2xl p-6">
+          <h3 class="font-mono text-sm font-semibold text-slate-100 flex items-center gap-2.5">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.7)]"></span>
+            <span data-i18n="stack.cat2">Frontend &amp; Interfaces</span>
+          </h3>
+          <p class="mt-1.5 text-xs text-slate-400" data-i18n="stack.cat2Desc">
+            Aplicações SPA tipadas, componentização reativa e integração segura com APIs.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2 font-mono text-xs">
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">Angular</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">TypeScript</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">React</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">RxJS</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">Tailwind CSS</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">HTML5 / CSS3</span>
+          </div>
+        </div>
+
+        <!-- Domínio 3: Dados & Mensageria -->
+        <div class="liquid-glass glass-card rounded-2xl p-6">
+          <h3 class="font-mono text-sm font-semibold text-slate-100 flex items-center gap-2.5">
+            <span class="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.7)]"></span>
+            <span data-i18n="stack.cat3">Dados &amp; Mensageria</span>
+          </h3>
+          <p class="mt-1.5 text-xs text-slate-400" data-i18n="stack.cat3Desc">
+            Persistência isolada por domínio, cache distribuído e comunicação assíncrona orientada a eventos.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2 font-mono text-xs">
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">PostgreSQL</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">RabbitMQ</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">Redis</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">SQL Server / Oracle</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">Event-Driven / Outbox</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">Clean Architecture</span>
+          </div>
+        </div>
+
+        <!-- Domínio 4: DevOps & Observabilidade -->
+        <div class="liquid-glass glass-card rounded-2xl p-6">
+          <h3 class="font-mono text-sm font-semibold text-slate-100 flex items-center gap-2.5">
+            <span class="w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.7)]"></span>
+            <span data-i18n="stack.cat4">DevOps &amp; Observabilidade</span>
+          </h3>
+          <p class="mt-1.5 text-xs text-slate-400" data-i18n="stack.cat4Desc">
+            Containers rootless, pipelines automatizados, rastreamento distribuído e métricas em tempo real.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2 font-mono text-xs">
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">Podman / Docker</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">OpenTelemetry</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">Grafana</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">Serilog</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">GitHub Actions</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-950/65 border border-white/[0.08] text-slate-200">Linux</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 5) FOOTER MINIMALISTA COM CÓPIA RÁPIDA -->
+  <footer class="relative z-10 border-t border-white/[0.08] bg-slate-950/60 backdrop-blur-md">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <div>
+        <p class="font-mono text-sm text-slate-100 font-medium">Matheus Marra</p>
+        <p class="text-xs text-slate-400 mt-1" data-i18n="footer.note">
+          Disponível para conversas técnicas sobre Engenharia Full Stack, Backend e Arquitetura Distribuída.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          onclick="copyEmail()"
+          class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl liquid-glass text-xs font-mono text-slate-200 hover:text-emerald-300 transition-colors"
+        >
+          <span id="footer-email-text">matheusmarrams@gmail.com</span>
+          <span id="footer-copy-badge" class="px-2 py-0.5 rounded-md bg-white/[0.07] text-slate-300 text-[11px]" data-i18n="footer.copy">Copiar</span>
+        </button>
+
+        <a
+          href="https://github.com/math-mms"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 text-slate-950 text-xs font-mono font-semibold hover:bg-white transition-colors"
+        >
+          <span data-i18n="footer.repos">Repositórios GitHub</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Input oculto auxiliar para cópia segura compatível com iframes -->
+  <input type="text" id="hidden-email-input" value="matheusmarrams@gmail.com" class="sr-only" aria-hidden="true" tabindex="-1" />
+
+  <script>
+    // Dicionário de tradução PT-BR / EN
+    const translations = {
+      pt: {
+        'nav.projects': 'Projetos & Arquitetura',
+        'nav.experience': 'Experiência',
+        'nav.stack': 'Stack Técnica',
+        'hero.badge': 'Disponível para desafios Full Stack & Arquitetura • São José dos Campos, SP',
+        'hero.summary': 'Engenheiro de Software Full Stack Pleno com foco em backend robusto, arquitetura de microsserviços e aplicações corporativas de alta criticidade. Experiência prática na construção de APIs escaláveis, mensageria orientada a eventos, observabilidade end-to-end e interfaces Angular modernas.',
+        'hero.ctaProjects': 'Ver Projetos',
+        'hero.copyEmail': 'Copiar E-mail',
+        'hero.copied': 'E-mail Copiado!',
+        'projects.eyebrow': '01 / Engenharia & Arquitetura',
+        'projects.title': 'Projetos em Destaque',
+        'projects.subtitle': 'Sistemas selecionados com foco em decisões arquiteturais, isolamento de domínio, resiliência e trade-offs de implementação.',
+        'projects.repo': 'Ver código no GitHub',
+        'proj1.title': 'Sistema de Gerenciamento Financeiro Distribuído',
+        'proj1.desc': 'Plataforma financeira projetada sob arquitetura de microsserviços para garantir isolamento transacional e escalabilidade independente entre domínios de autenticação, contas, transações e orçamentos.',
+        'proj1.diagramLabel': 'Topologia: YARP Gateway • Microsserviços .NET 10 • RabbitMQ • Redis • PostgreSQL',
+        'proj1.dec1Title': 'Database per Service & Consistência',
+        'proj1.dec1Body': 'Cada microsserviço (Auth, Account, Transaction e Budget) possui sua própria base lógica no PostgreSQL, eliminando acoplamento via joins entre domínios. A consistência eventual entre lançamentos e saldos ocorre via eventos assíncronos no RabbitMQ.',
+        'proj1.dec2Title': 'Borda Unificada & Idempotência',
+        'proj1.dec2Body': 'Uso do YARP como API Gateway nativo em .NET para roteamento centralizado e políticas de resiliência, aliado ao Redis para chaves de idempotência em transações financeiras e Podman para containers rootless.',
+        'proj2.title': 'Plataforma de Recrutamento & Automação — AH Sport Rekruttering',
+        'proj2.desc': 'Plataforma ponta a ponta para triagem técnica, gestão de funil de candidatos e automação de comunicações no setor esportivo e corporativo, reduzindo gargalos operacionais entre recrutadores e gestores.',
+        'proj2.b1': 'Pipeline orientado a estados com gatilhos automáticos de notificação, agendamentos e auditoria de transições para evitar condições de corrida.',
+        'proj2.b2': 'Filtros combinados por perfil técnico e disponibilidade respaldados por índices compostos no PostgreSQL e interface bilíngue.',
+        'proj3.desc': 'Aplicação Full Stack para geração inteligente, conferência estatística e gestão de apostas lotéricas, estruturada com separação estrita entre regras de domínio e detalhes de infraestrutura.',
+        'proj3.b1': 'Domínio isolado de frameworks externos (Clean Architecture), facilitando testes unitários das regras de fechamento e probabilidade.',
+        'proj3.b2': 'Multi-stage Docker builds separando etapa de compilação (TypeScript/React) da imagem final enxuta de runtime em Node.js.',
+        'exp.eyebrow': '02 / Trajetória Profissional',
+        'exp.title': 'Experiência & Formação',
+        'exp.role1': 'Full Stack Software Developer',
+        'exp.role1Desc': 'Atuação no desenvolvimento, sustentação evolutiva e integração de sistemas corporativos de missão crítica para grandes clientes dos setores financeiro (Itaú) e automotivo (Volkswagen), operando em squads ágeis com rigorosos padrões de segurança, governança e qualidade de código.',
+        'exp.b1': 'Desenvolvimento e manutenção de serviços backend em Java (Spring Boot) e .NET, garantindo compatibilidade de contratos e estabilidade operacional em ambientes de alto volume.',
+        'exp.b2': 'Construção e evolução de interfaces corporativas em Angular com TypeScript, priorizando modularidade, performance de renderização e aderência a fluxos de negócio complexos.',
+        'exp.b3': 'Participação ativa em code reviews, diagnóstico de incidentes em produção, refatoração incremental de código legado e automação de esteiras CI/CD.',
+        'edu.label': 'Formação & Especialização Contínua',
+        'edu.degree': 'Análise e Desenvolvimento de Sistemas / Engenharia de Software',
+        'edu.focus': 'Foco contínuo em Arquitetura de Sistemas Distribuídos, Mensageria, Observabilidade (OpenTelemetry/Grafana) e Cloud-Native Containers.',
+        'stack.eyebrow': '03 / Ecossistema & Ferramentas',
+        'stack.title': 'Stack Técnica',
+        'stack.subtitle': 'Tecnologias aplicadas em produção e projetos de engenharia, organizadas por responsabilidade arquitetural.',
+        'stack.cat1': 'Backend & APIs',
+        'stack.cat1Desc': 'Construção de serviços RESTful, API gateways, integrações corporativas e processamento assíncrono.',
+        'stack.cat2': 'Frontend & Interfaces',
+        'stack.cat2Desc': 'Aplicações SPA tipadas, componentização reativa e integração segura com APIs.',
+        'stack.cat3': 'Dados & Mensageria',
+        'stack.cat3Desc': 'Persistência isolada por domínio, cache distribuído e comunicação assíncrona orientada a eventos.',
+        'stack.cat4': 'DevOps & Observabilidade',
+        'stack.cat4Desc': 'Containers rootless, pipelines automatizados, rastreamento distribuído e métricas em tempo real.',
+        'footer.note': 'Disponível para conversas técnicas sobre Engenharia Full Stack, Backend e Arquitetura Distribuída.',
+        'footer.copy': 'Copiar',
+        'footer.copied': 'Copiado',
+        'footer.repos': 'Repositórios GitHub'
+      },
+      en: {
+        'nav.projects': 'Projects & Architecture',
+        'nav.experience': 'Experience',
+        'nav.stack': 'Tech Stack',
+        'hero.badge': 'Open to Full Stack & Architecture roles • São José dos Campos, Brazil',
+        'hero.summary': 'Mid-Level Full Stack Software Engineer focused on resilient backends, microservices architecture, and mission-critical enterprise applications. Hands-on experience building scalable APIs, event-driven messaging, end-to-end observability, and modern Angular frontends.',
+        'hero.ctaProjects': 'View Projects',
+        'hero.copyEmail': 'Copy Email',
+        'hero.copied': 'Email Copied!',
+        'projects.eyebrow': '01 / Engineering & Architecture',
+        'projects.title': 'Featured Projects',
+        'projects.subtitle': 'Selected systems highlighting architectural decisions, domain isolation, resilience, and engineering trade-offs.',
+        'projects.repo': 'View on GitHub',
+        'proj1.title': 'Distributed Financial Management System',
+        'proj1.desc': 'Financial platform designed with a microservices architecture to ensure transactional isolation and independent scalability across authentication, accounts, transactions, and budget domains.',
+        'proj1.diagramLabel': 'Topology: YARP Gateway • .NET 10 Microservices • RabbitMQ • Redis • PostgreSQL',
+        'proj1.dec1Title': 'Database per Service & Consistency',
+        'proj1.dec1Body': 'Each microservice (Auth, Account, Transaction, and Budget) owns its logical PostgreSQL schema, eliminating cross-domain join coupling. Eventual consistency between transactions and balances is achieved via asynchronous RabbitMQ events.',
+        'proj1.dec2Title': 'Unified Edge & Idempotency',
+        'proj1.dec2Body': 'Uses YARP as a native .NET API Gateway for centralized routing and resilience policies, paired with Redis for financial transaction idempotency keys and Podman for rootless container orchestration.',
+        'proj2.title': 'Recruitment & Automation Platform — AH Sport Rekruttering',
+        'proj2.desc': 'End-to-end platform for technical screening, candidate funnel management, and communication automation across sports and corporate recruiting, eliminating operational bottlenecks between recruiters and hiring managers.',
+        'proj2.b1': 'State-driven pipeline with automated notification triggers, scheduling, and transition audit logs to prevent race conditions.',
+        'proj2.b2': 'Multi-criteria filtering by technical profile and availability backed by composite PostgreSQL indexes and a bilingual interface.',
+        'proj3.desc': 'Full Stack application for smart number generation, statistical checking, and lottery bet management, structured with strict separation between domain rules and infrastructure concerns.',
+        'proj3.b1': 'Domain isolated from external frameworks (Clean Architecture), enabling straightforward unit testing of probability and combinatorics rules.',
+        'proj3.b2': 'Multi-stage Docker builds separating the TypeScript/React build phase from a lean Node.js runtime production image.',
+        'exp.eyebrow': '02 / Career Track',
+        'exp.title': 'Experience & Education',
+        'exp.role1': 'Full Stack Software Developer',
+        'exp.role1Desc': 'Engineering, evolutionary maintenance, and system integration for mission-critical enterprise platforms serving major clients in Banking (Itaú) and Automotive (Volkswagen) sectors, working in agile squads under strict security and code quality standards.',
+        'exp.b1': 'Developed and maintained backend services in Java (Spring Boot) and .NET, ensuring API contract compatibility and operational stability in high-throughput environments.',
+        'exp.b2': 'Built and evolved enterprise Angular frontends with TypeScript, focusing on modularity, rendering performance, and complex business workflows.',
+        'exp.b3': 'Active contributor in code reviews, production incident troubleshooting, incremental legacy refactoring, and CI/CD pipeline automation.',
+        'edu.label': 'Education & Continuous Focus',
+        'edu.degree': 'Systems Analysis and Development / Software Engineering',
+        'edu.focus': 'Ongoing focus on Distributed Systems Architecture, Messaging, Observability (OpenTelemetry/Grafana), and Cloud-Native Containers.',
+        'stack.eyebrow': '03 / Ecosystem & Tooling',
+        'stack.title': 'Technical Stack',
+        'stack.subtitle': 'Technologies applied in production and engineering projects, grouped by architectural responsibility.',
+        'stack.cat1': 'Backend & APIs',
+        'stack.cat1Desc': 'Building RESTful services, API gateways, enterprise integrations, and asynchronous workers.',
+        'stack.cat2': 'Frontend & Interfaces',
+        'stack.cat2Desc': 'Strongly-typed SPA applications, reactive component design, and secure API integration.',
+        'stack.cat3': 'Data & Messaging',
+        'stack.cat3Desc': 'Domain-isolated persistence, distributed caching, and event-driven asynchronous communication.',
+        'stack.cat4': 'DevOps & Observability',
+        'stack.cat4Desc': 'Rootless containers, automated CI/CD pipelines, distributed tracing, and real-time metrics.',
+        'footer.note': 'Open to technical discussions regarding Full Stack, Backend, and Distributed Architecture roles.',
+        'footer.copy': 'Copy',
+        'footer.copied': 'Copied',
+        'footer.repos': 'GitHub Repositories'
+      }
+    };
+
+    let currentLang = 'pt';
+    let copyTimeout = null;
+
+    function setLanguage(lang) {
+      if (!translations[lang]) return;
+      currentLang = lang;
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+
+      // Atualiza todos os nós mapeados via data-i18n
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      // Anima o Liquid Pill Indicator com curva elástica
+      const indicator = document.getElementById('pill-indicator');
+      const btnPt = document.getElementById('btn-pt');
+      const btnEn = document.getElementById('btn-en');
+
+      if (lang === 'pt') {
+        indicator.classList.remove('is-en');
+        btnPt.setAttribute('aria-pressed', 'true');
+        btnEn.setAttribute('aria-pressed', 'false');
+        btnPt.className = 'relative z-10 w-1/2 h-full text-xs font-mono font-semibold text-slate-50 transition-colors';
+        btnEn.className = 'relative z-10 w-1/2 h-full text-xs font-mono font-medium text-slate-400 hover:text-slate-200 transition-colors';
+      } else {
+        indicator.classList.add('is-en');
+        btnPt.setAttribute('aria-pressed', 'false');
+        btnEn.setAttribute('aria-pressed', 'true');
+        btnEn.className = 'relative z-10 w-1/2 h-full text-xs font-mono font-semibold text-slate-50 transition-colors';
+        btnPt.className = 'relative z-10 w-1/2 h-full text-xs font-mono font-medium text-slate-400 hover:text-slate-200 transition-colors';
+      }
+    }
+
+    function copyEmail() {
+      const input = document.getElementById('hidden-email-input');
+      input.classList.remove('sr-only');
+      input.select();
+      input.setSelectionRange(0, 99999);
+
+      try {
+        document.execCommand('copy');
+      } catch (err) {
+        // Fallback silencioso caso o navegador restrinja seleção
+      }
+
+      input.classList.add('sr-only');
+
+      const heroLabel = document.getElementById('hero-email-label');
+      const footerBadge = document.getElementById('footer-copy-badge');
+
+      heroLabel.textContent = translations[currentLang]['hero.copied'];
+      footerBadge.textContent = translations[currentLang]['footer.copied'];
+      footerBadge.classList.remove('bg-white/[0.07]', 'text-slate-300');
+      footerBadge.classList.add('bg-emerald-500/25', 'text-emerald-300');
+
+      clearTimeout(copyTimeout);
+      copyTimeout = setTimeout(() => {
+        heroLabel.textContent = translations[currentLang]['hero.copyEmail'];
+        footerBadge.textContent = translations[currentLang]['footer.copy'];
+        footerBadge.classList.remove('bg-emerald-500/25', 'text-emerald-300');
+        footerBadge.classList.add('bg-white/[0.07]', 'text-slate-300');
+      }, 2200);
+    }
+
+    // Spotlight interativo em GPU via requestAnimationFrame (evita layout thrashing)
+    (function initGlassSpotlight() {
+      const cards = document.querySelectorAll('.glass-card');
+      let rafId = null;
+
+      cards.forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+          if (rafId) cancelAnimationFrame(rafId);
+          rafId = requestAnimationFrame(() => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+          });
+        }, { passive: true });
+      });
+    })();
+  </script>
+</body>
+</html>
